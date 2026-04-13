@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>演变史与意象哲学 - 中国古代园林</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+<body onload="initPage('game')">
+
+<canvas id="ink-canvas"></canvas>
+
+<button class="theme-toggle" onclick="toggleNightMode()">
+    <i class="fa-solid fa-moon"></i> 夜游园林
+</button>
+
+<nav>
+    <div class="nav-title"><i class="fa-solid fa-leaf"></i> 中国古典园林时空全景系统</div>
+</nav>
+
+<div class="container">
+    <div class="tab-bar">
+        <div class="tab" onclick="window.location.href='gallery.html'"><i class="fa-solid fa-sitemap"></i> 历代风华与名园大赏</div>
+        <div class="tab active" onclick="window.location.href='game.html'"><i class="fa-solid fa-hourglass-half"></i> 演变史与意象哲学</div>
+        <div class="tab" onclick="window.location.href='philosophy.html'"><i class="fa-solid fa-scroll"></i> 人物与著作</div>
+        <div class="tab" onclick="window.location.href='fun.html'"><i class="fa-solid fa-robot"></i> 园趣 · AI 智囊</div>
+        <div class="tab" onclick="window.location.href='构造分类/earth.html'"><i class="fa-solid fa-cubes"></i> 构造分类</div>
+    </div>
+
+    <!-- 演变史与意象哲学 内容 -->
+    <div class="panel show" id="main-tab-2">
+        <div class="module-card">
+            <div class="module-title">从“囿”到“园”的演变时间轴</div>
+            <div class="timeline">
+                <!-- ... (timeline content stays same) ... -->
+                <div class="tl-node" data-stage="起源" onclick="showTimelineDetail('起源')">
+                    <div class="tl-dot">起源</div>
+                    <div class="tl-text">殷周时期</div>
+                    <div class="tl-desc">称为“囿”，圈地放养禽兽，供帝王狩猎。</div>
+                    <img src="image/殷周时期.png" alt="殷周时期" style="width: 180px; height: 110px; object-fit: cover; border-radius: 8px; margin-top: 10px; border: 1px solid var(--bg-divider); box-shadow: var(--card-shadow);">
+                </div>
+                <div class="tl-node" data-stage="转折" onclick="showTimelineDetail('转折')">
+                    <div class="tl-dot">转折</div>
+                    <div class="tl-text">魏晋南北朝</div>
+                    <div class="tl-desc">寄情山水，私家园林开始萌芽，追求自然之美。</div>
+                    <img src="image/魏晋南北朝私家园林.png" alt="魏晋时期" style="width: 180px; height: 110px; object-fit: cover; border-radius: 8px; margin-top: 10px; border: 1px solid var(--bg-divider); box-shadow: var(--card-shadow);">
+                </div>
+                <div class="tl-node" data-stage="成熟" onclick="showTimelineDetail('成熟')">
+                    <div class="tl-dot">成熟</div>
+                    <div class="tl-text">唐宋时期</div>
+                    <div class="tl-desc">文人参与造园，诗画入园，自然山水园形成。</div>
+                    <img src="image/华清池2.png" alt="唐宋时期" style="width: 180px; height: 110px; object-fit: cover; border-radius: 8px; margin-top: 10px; border: 1px solid var(--bg-divider); box-shadow: var(--card-shadow);">
+                </div>
+                <div class="tl-node" data-stage="精深" onclick="showTimelineDetail('精深')">
+                    <div class="tl-dot">精深</div>
+                    <div class="tl-text">明清时期</div>
+                    <div class="tl-desc">写意山水园达到巅峰，叠山理水技艺炉火纯青。</div>
+                    <img src="image/拙政园2.png" alt="拙政园" style="width: 180px; height: 110px; object-fit: cover; border-radius: 8px; margin-top: 10px; border: 1px solid var(--bg-divider); box-shadow: var(--card-shadow);">
+                </div>
+            </div>
+        </div>
+
+        <div class="module-card">
+            <div class="module-title">3D 历代园林意象数据球</div>
+            <p style="text-align:center; font-size:14px; color:var(--sub-title);"><i class="fa-solid fa-hand-pointer"></i> 鼠标悬停并移动可控制星球自转</p>
+            <canvas id="wordcloud-3d" width="1200" height="500" style="width: 100%; display: block;"></canvas>
+        </div>
+
+        <div class="module-card">
+            <div class="module-title">造园哲学：天人合一与咫尺山林</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div class="philosophy-item" style="padding: 20px; background: rgba(139, 58, 58, 0.05); border-radius: 12px; border-left: 5px solid var(--emphasis);">
+                    <h4 style="color: var(--title-color); margin-bottom: 10px;"><i class="fa-solid fa-yin-yang"></i> 天人合一</h4>
+                    <p style="font-size: 14px; line-height: 1.8; color: var(--body-text);">中国园林不追求几何对称，而是模仿自然，使人工建筑与自然环境融为一体。园林不仅是游憩之所，更是文人追求与自然和谐共生的精神家园。</p>
+                </div>
+                <div class="philosophy-item" style="padding: 20px; background: rgba(139, 58, 58, 0.05); border-radius: 12px; border-left: 5px solid var(--emphasis);">
+                    <h4 style="color: var(--title-color); margin-bottom: 10px;"><i class="fa-solid fa-mountain-sun"></i> 咫尺山林</h4>
+                    <p style="font-size: 14px; line-height: 1.8; color: var(--body-text);">在有限的城市宅地内，通过巧妙的叠山理水、空间转换，营造出深山幽谷的意境。所谓“一拳代山，一勺代水”，体现了中国造园极高的艺术概括力。</p>
+                </div>
+                <div class="philosophy-item" style="padding: 20px; background: rgba(139, 58, 58, 0.05); border-radius: 12px; border-left: 5px solid var(--emphasis);">
+                    <h4 style="color: var(--title-color); margin-bottom: 10px;"><i class="fa-solid fa-eye"></i> 步移景异</h4>
+                    <p style="font-size: 14px; line-height: 1.8; color: var(--body-text);">通过回廊、漏窗、门洞的引导与遮挡，使游人在行走过程中看到的景色不断变换。每一处转角都是一幅新的画卷，每一扇窗户都是一个天然的镜框。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 详情弹窗 -->
+<div id="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal()"><i class="fa-solid fa-circle-xmark"></i></span>
+        <div class="result-title" id="m-title">营造结果</div>
+        <img id="m-img" src="" class="result-img" style="display:none;">
+        <div class="result-text" id="m-text"></div>
+        <div class="rating-section" style="display:none;"></div> <!-- 占位用 -->
+    </div>
+</div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+<!-- AI 智能体 SDK -->
+<script src="https://o.alicdn.com/appflow/chatbot/v1/AppflowChatSDK.js"></script>
+<script>
+    if (window.APPFLOW_CHAT_SDK && window.APPFLOW_CHAT_SDK.init) {
+        window.APPFLOW_CHAT_SDK.init({
+            integrateConfig: {
+                integrateId: 'cit-a6f891b8400b44d2a440',
+                domain: { requestDomain: 'https://1446874318902084.appflow.aliyunnest.com' }
+            }
+        });
+    }
+</script>
+</body>
+</html>

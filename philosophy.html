@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人物与著作 - 中国古代园林</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+<body onload="initPage('philosophy')">
+
+<canvas id="ink-canvas"></canvas>
+
+<button class="theme-toggle" onclick="toggleNightMode()">
+    <i class="fa-solid fa-moon"></i> 夜游园林
+</button>
+
+<nav>
+    <div class="nav-title"><i class="fa-solid fa-leaf"></i> 中国古典园林时空全景系统</div>
+</nav>
+
+<div class="container">
+    <div class="tab-bar">
+        <div class="tab" onclick="window.location.href='gallery.html'"><i class="fa-solid fa-sitemap"></i> 历代风华与名园大赏</div>
+        <div class="tab" onclick="window.location.href='game.html'"><i class="fa-solid fa-hourglass-half"></i> 演变史与意象哲学</div>
+        <div class="tab active" onclick="window.location.href='philosophy.html'"><i class="fa-solid fa-scroll"></i> 人物与著作</div>
+        <div class="tab" onclick="window.location.href='fun.html'"><i class="fa-solid fa-robot"></i> 园趣 · AI 智囊</div>
+        <div class="tab" onclick="window.location.href='构造分类/earth.html'"><i class="fa-solid fa-cubes"></i> 构造分类</div>
+    </div>
+
+    <!-- 人物与著作 内容 -->
+    <div class="panel show" id="main-tab-3">
+        <div class="module-card">
+            <div class="module-title">园林著作对古今建筑之影响 (桑基图)</div>
+            <p style="text-align:center; font-size:14px; color:var(--sub-title);"><i class="fa-solid fa-circle-info"></i> 展示古典造园著作如何通过核心理念影响古代名园及现代景观设计</p>
+            <div id="sankey-chart" style="width: 100%; height: 72vh; min-height: 640px; margin-top: 20px;"></div>
+        </div>
+        
+        <div class="module-card">
+            <div class="module-title">造园巨匠与文化名人</div>
+            <div class="figures-grid">
+                <!-- 人物卡片 1 -->
+                <div class="figure-card">
+                    <!-- 【图片插入点 18】：计成 -->
+                    <img src="image/计成.png" class="f-img" alt="计成">
+                    <div class="f-quote">虽由人作，宛自天开</div>
+                    <div class="f-name">计成 <span style="font-size:12px;color:#888;">(明代造园宗师)</span></div>
+                    <div class="f-desc"><b>核心成就：</b>著有世界首部系统造园专著《园冶》，提出“虽由人作，宛自天开”“巧于因借，精在体宜”。<br><b>风格：</b>以画意入造园，强调因地制宜。</div>
+                    <button class="btn-masterpiece" onclick="showMasterpiece('计成')"><i class="fa-solid fa-gem"></i> 查看代表作</button>
+                </div>
+                <!-- 人物卡片 2 -->
+                <div class="figure-card">
+                    <!-- 【图片插入点 19】：张南垣 -->
+                    <img src="image/张南垣.png" class="f-img" alt="张南垣">
+                    <div class="f-quote">土石相间，浑然天成</div>
+                    <div class="f-name">张南垣 <span style="font-size:12px;color:#888;">(明末清初叠山大家)</span></div>
+                    <div class="f-desc"><b>核心成就：</b>改变传统“高架叠缀”风格，首创“土石相间、因形造势”的自然叠山法。<br><b>风格：</b>假山浑然若真山，意境苍茫。</div>
+                    <button class="btn-masterpiece" onclick="showMasterpiece('张南垣')"><i class="fa-solid fa-gem"></i> 查看代表作</button>
+                </div>
+                <!-- 人物卡片 3 -->
+                <div class="figure-card">
+                    <!-- 【图片插入点 20】：戈裕良 -->
+                    <img src="image/戈裕良.png" class="f-img" alt="戈裕良">
+                    <div class="f-quote">不用铁活，数百年不散</div>
+                    <div class="f-name">戈裕良 <span style="font-size:12px;color:#888;">(清代叠山巨匠)</span></div>
+                    <div class="f-desc"><b>核心成就：</b>代表作苏州环秀山庄假山（独步江南）；首创“钩带法”叠石，不用铁活固定。<br><b>风格：</b>兼取气势与精雕，咫尺山林气象万千。</div>
+                    <button class="btn-masterpiece" onclick="showMasterpiece('戈裕良')"><i class="fa-solid fa-gem"></i> 查看代表作</button>
+                </div>
+                <!-- 人物卡片 4 -->
+                <div class="figure-card">
+                    <!-- 【图片插入点 21】：文震亨 -->
+                    <img src="image/文震亨.png" class="f-img" alt="文震亨">
+                    <div class="f-quote">园灵之胜，全在乎雅</div>
+                    <div class="f-name">文震亨 <span style="font-size:12px;color:#888;">(明代理论家)</span></div>
+                    <div class="f-desc"><b>核心成就：</b>著《长物志》，系统总结文人园林的审美标准与布置原则。<br><b>风格：</b>重雅致、忌俗艳，强调园林是修身养性的空间。</div>
+                    <button class="btn-masterpiece" onclick="showMasterpiece('文震亨')"><i class="fa-solid fa-gem"></i> 查看代表作</button>
+                </div>
+                <!-- 人物卡片 5 -->
+                <div class="figure-card">
+                    <img src="image/文徽明.png" class="f-img" alt="文徵明">
+                    <div class="f-quote">笔墨意蕴，在山水间</div>
+                    <div class="f-name">文徵明 <span style="font-size:12px;color:#888;">(吴门画派领袖)</span></div>
+                    <div class="f-desc"><b>核心关联：</b>参与拙政园早期规划，绘制《王氏拙政园图》。<br><b>影响：</b>其山水画笔意直接影响园中布局，奠定“诗画入园”基调。</div>
+                    <button class="btn-masterpiece" onclick="showMasterpiece('文徵明')"><i class="fa-solid fa-gem"></i> 查看代表作</button>
+                </div>
+                <!-- 人物卡片 6 -->
+                <div class="figure-card">
+                    <img src="image/李渔.png" class="f-img" alt="李渔">
+                    <div class="f-quote">便面窗中，别有天地</div>
+                    <div class="f-name">李渔 <span style="font-size:12px;color:#888;">(戏曲家/美学家)</span></div>
+                    <div class="f-desc"><b>核心关联：</b>著《闲情偶寄》，对园林建筑有独到见解。自造金陵芥子园，设计“便面窗”等框景。<br><b>风格：</b>重实用与趣味。</div>
+                    <button class="btn-masterpiece" onclick="showMasterpiece('李渔')"><i class="fa-solid fa-gem"></i> 查看代表作</button>
+                </div>
+                <!-- 人物卡片 7 -->
+                <div class="figure-card">
+                    <img src="image/宋徽宗赵信.png" class="f-img" alt="宋徽宗赵佶">
+                    <div class="f-quote">天下奇石，尽聚艮岳</div>
+                    <div class="f-name">宋徽宗赵佶 <span style="font-size:12px;color:#888;">(北宋皇帝)</span></div>
+                    <div class="f-desc"><b>核心关联：</b>主持营造“艮岳”，集天下奇石名花于一园，将宫廷画院审美融入造园。<br><b>影响：</b>奠定了后世皇家园林范式。</div>
+                    <button class="btn-masterpiece" onclick="showMasterpiece('宋徽宗赵佶')"><i class="fa-solid fa-gem"></i> 查看代表作</button>
+                </div>
+                <!-- 人物卡片 8 -->
+                <div class="figure-card">
+                    <img src="image/陈从周.png" class="f-img" alt="陈从周">
+                    <div class="f-quote">园以文传，诗画是魂</div>
+                    <div class="f-name">陈从周 <span style="font-size:12px;color:#888;">(现代园林大家)</span></div>
+                    <div class="f-desc"><b>核心成就：</b>著《说园》；主持修复网师园等；以殿春簃为蓝本设计纽约大都会博物馆“明轩”。<br><b>风格：</b>强调“园以文传”。</div>
+                    <button class="btn-masterpiece" onclick="showMasterpiece('陈从周')"><i class="fa-solid fa-gem"></i> 查看代表作</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="module-card">
+            <div class="module-title">香山帮：千年匠脉，苏派之魂</div>
+            
+            <div style="margin-bottom: 25px;">
+                <div class="xs-title"><i class="fa-solid fa-scroll"></i> 一、香山帮概述</div>
+                <!-- 【图片插入点 22】：香山帮 -->
+                <div style="text-align: center; margin-bottom: 15px;">
+                    <img src="image/香山帮.png" alt="香山帮" style="max-width: 100%; border-radius: 8px; box-shadow: var(--card-shadow);">
+                </div>
+                <p style="font-size: 14px; text-align: justify; line-height: 1.8;">
+                    香山帮是以江苏苏州吴中区胥口镇香山为地理核心的传统建筑工匠群体，以木工领衔，集泥水、漆、雕、叠山、彩绘等多工种于一体，有“江南木工巧匠皆出于香山”的美誉。起源于春秋吴地，汉晋成型，明清达鼎盛（明代蒯祥主持紫禁城营造是标志性事件）；2009年作为“中国传统木结构营造技艺”核心部分入选联合国人类非物质文化遗产。<br>
+                    <b>风格特征：</b>色调素雅和谐、结构紧凑精巧、布局移步换景、榫卯纯靠手工咬合，不用一钉而坚固耐久；尽显江南文人园林的雅致灵秀。
+                </p>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <div class="xs-title"><i class="fa-solid fa-users"></i> 二、宗师巨匠：薪火相传</div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+                    <div style="background: rgba(140, 96, 58, 0.05); padding: 15px; border-radius: 8px; border-top: 3px solid var(--emphasis);">
+                        <b style="color: var(--title-color); font-size: 16px;">蒯祥 (明代) - 香山帮鼻祖</b>
+                        <p style="font-size: 13px; margin-top: 8px; margin-bottom: 0;">被封“蒯鲁班”。主持北京故宫前三殿、天安门城楼设计，发明“金刚腿”等绝技，精于尺度，著《蒯祥营造图册》。</p>
+                    </div>
+                    <div style="background: rgba(140, 96, 58, 0.05); padding: 15px; border-radius: 8px; border-top: 3px solid var(--emphasis);">
+                        <b style="color: var(--title-color); font-size: 16px;">姚承祖 (清末民初) - 理论集大成者</b>
+                        <p style="font-size: 13px; margin-top: 8px; margin-bottom: 0;">编撰《营造法原》，系统整理苏派古建技法。创办“梓义公所”规范传承。</p>
+                    </div>
+                    <div style="background: rgba(140, 96, 58, 0.05); padding: 15px; border-radius: 8px; border-top: 3px solid var(--emphasis);">
+                        <b style="color: var(--title-color); font-size: 16px;">杨惠之 (唐代) - 塑圣</b>
+                        <p style="font-size: 13px; margin-top: 8px; margin-bottom: 0;">与吴道子同师。创“壁塑”影响深远，著《塑诀》，为早期雕塑理论著作。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <div class="xs-title"><i class="fa-solid fa-hammer"></i> 三、核心技艺：无钉之固，寸木之巧</div>
+                <!-- 【图片插入点 23】：榫卯 -->
+                <div style="text-align: center; margin-bottom: 15px;">
+                    <img src="image/榫卯.png" alt="榫卯" style="max-width: 100%; border-radius: 8px; box-shadow: var(--card-shadow);">
+                </div>
+                <ul style="font-size: 14px; line-height: 1.8; padding-left: 20px; color: var(--body-text); margin: 0;">
+                    <li><b>大木作・榫卯绝技：</b>虎丘断梁殿纯靠复杂榫卯（菩萨顶、棋盘格等）支撑600余年；天安门榫卯精度达毫米级。</li>
+                    <li><b>小木作・苏式装修：</b>花窗、栏杆、挂落雕花细腻。网师园殿春簃花窗移步换景，为框景典范。</li>
+                    <li><b>雕刻工艺：</b>砖/木/石雕线条柔顺秀逸，东山雕花楼是香山帮砖木雕集大成之作。</li>
+                    <li><b>叠山掇石：</b>用“钩带法”嵌合，山石浑然一体如真山。</li>
+                </ul>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div>
+                    <div class="xs-title"><i class="fa-solid fa-landmark"></i> 四、传世代表作</div>
+                    <p style="font-size: 13px; line-height: 1.6; margin: 0;">
+                        <b>皇家宫殿：</b>北京故宫、天安门<br>
+                        <b>江南园林：</b>拙政园、网师园、环秀山庄<br>
+                        <b>古寺民居：</b>虎丘断梁殿、东山雕花楼<br>
+                        <b>海外输出：</b>纽约大都会“明轩”、波特兰“兰苏园”
+                    </p>
+                </div>
+                <div>
+                    <div class="xs-title"><i class="fa-solid fa-seedling"></i> 五、传承现状：活化新生</div>
+                    <p style="font-size: 13px; line-height: 1.6; margin: 0;">
+                        <b>模式：</b>传统师徒相授 + 现代院校合作。<br>
+                        <b>挑战：</b>老匠人减少，纯手工成本高，传承断层。<br>
+                        <b>活化：</b>在文旅项目、古建修复及海外中式园林中持续输出，让苏园之美走向世界。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 桑基图专属详情弹窗 (画卷样式) -->
+<div id="sankey-modal"></div>
+
+<!-- 详情弹窗 -->
+<div id="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal()"><i class="fa-solid fa-circle-xmark"></i></span>
+        <div class="result-title" id="m-title">加载中...</div>
+        
+        <div class="rating-section" style="display:none;">
+            <div class="rating-title">我的游园评分：</div>
+            <div class="stars" id="star-container">
+                <i class="fa-solid fa-star" data-val="1"></i>
+                <i class="fa-solid fa-star" data-val="2"></i>
+                <i class="fa-solid fa-star" data-val="3"></i>
+                <i class="fa-solid fa-star" data-val="4"></i>
+                <i class="fa-solid fa-star" data-val="5"></i>
+            </div>
+            <div class="rating-score" id="rating-score-text">暂未评分</div>
+        </div>
+
+        <img id="m-img" src="" class="result-img" style="display:none;">
+        <div id="m-mini-map-box" style="display:none; width: 100%; height: 350px; margin-bottom: 20px;"></div>
+        <div class="result-text" id="m-text"></div>
+    </div>
+</div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+<!-- AI 智能体 SDK -->
+<script src="https://o.alicdn.com/appflow/chatbot/v1/AppflowChatSDK.js"></script>
+<script>
+    if (window.APPFLOW_CHAT_SDK && window.APPFLOW_CHAT_SDK.init) {
+        window.APPFLOW_CHAT_SDK.init({
+            integrateConfig: {
+                integrateId: 'cit-a6f891b8400b44d2a440',
+                domain: { requestDomain: 'https://1446874318902084.appflow.aliyunnest.com' }
+            }
+        });
+    }
+</script>
+</body>
+</html>

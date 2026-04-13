@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>园趣 · AI 智囊 - 中国古代园林</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="initPage('fun')">
+
+<canvas id="ink-canvas"></canvas>
+
+<button class="theme-toggle" onclick="toggleNightMode()">
+    <i class="fa-solid fa-moon"></i> 夜游园林
+</button>
+
+<nav>
+    <div class="nav-title"><i class="fa-solid fa-leaf"></i> 中国古典园林时空全景系统</div>
+</nav>
+
+<div class="container">
+    <div class="tab-bar">
+        <div class="tab" onclick="window.location.href='gallery.html'"><i class="fa-solid fa-sitemap"></i> 历代风华与名园大赏</div>
+        <div class="tab" onclick="window.location.href='game.html'"><i class="fa-solid fa-hourglass-half"></i> 演变史与意象哲学</div>
+        <div class="tab" onclick="window.location.href='philosophy.html'"><i class="fa-solid fa-scroll"></i> 人物与著作</div>
+        <div class="tab active" onclick="window.location.href='fun.html'"><i class="fa-solid fa-robot"></i> 园趣 · AI 智囊</div>
+        <div class="tab" onclick="window.location.href='构造分类/earth.html'"><i class="fa-solid fa-cubes"></i> 构造分类</div>
+    </div>
+
+    <!-- 园趣 · AI 智囊 内容 -->
+    <div class="panel show" id="main-tab-4">
+        <div class="module-card">
+            <div class="module-title">营造互动游戏：搜集明清私家园林碎片</div>
+            <p style="text-align:center; color:var(--body-text); opacity:0.8; margin-bottom: 20px;">提示：请在下方选出 <b>3</b> 个属于“江南古典私家园林”的典型构件，然后点击组合。</p>
+            <div class="game-area" style="background: none; box-shadow: none; padding: 0;">
+                <div class="game-content">
+                    <div class="fragments-container" id="game-board" style="margin-bottom: 20px;"></div>
+                    <div style="text-align: center;">
+                        <button class="game-btn" onclick="checkGameResult()" style="display: inline-block;"><i class="fa-solid fa-hammer"></i> 组合园林</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fun-top-grid">
+            <div class="module-card">
+                <div class="module-title">AI 园林智囊</div>
+                <div class="ai-intro">
+                    <div class="ai-avatar-wrapper">
+                        <img src="image/宋徽宗赵信.png" alt="宋徽宗" class="ai-avatar">
+                    </div>
+                    <div class="ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> 智能园林助手</div>
+                    <p class="ai-description">
+                        欢迎来到“园趣”AI 智囊空间。在这里，您可以与跨越千年的造园智慧对话。无论是探寻特定园林的营建秘辛，还是请教如何“叠石理水”，助手都将为您解答。
+                    </p>
+                    <div class="ai-suggestions">
+                        <p class="suggestions-title"><i class="fa-solid fa-comment-dots"></i> 您可以试着问我：</p>
+                        <ul class="suggestions-list">
+                            <li>• “如何评价《园冶》的历史地位？”</li>
+                            <li>• “江南园林中‘借景’的经典案例有哪些？”</li>
+                            <li>• “帮我推荐一处适合春天游览的苏州名园。”</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-title">园林趣闻 · AI 拾遗</div>
+                <div class="trivia-list">
+                    <div class="trivia-item">
+                        <h4>太湖石的‘瘦透漏皱’</h4>
+                        <p>太湖石以其独特的形态美著称。‘瘦’指石身清秀；‘透’指孔穴通明；‘漏’指石身穿孔；‘皱’指纹理起伏。这四字诀是鉴赏太湖石的最高标准。</p>
+                    </div>
+                    <div class="trivia-item">
+                        <h4>一池三山的起源</h4>
+                        <p>相传汉武帝在长安开凿昆明池，池中筑蓬莱、方丈、瀛洲三神山。从此‘一池三山’成为皇家园林的经典布局。</p>
+                    </div>
+                    <div class="trivia-item">
+                        <h4>园林中的‘借景’大师</h4>
+                        <p>计成在《园冶》中提出：‘借者，园虽别内外，得景则无拘远近。’ 意味着造园者要巧妙地将远处的塔、近处的山借入园中。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="module-card">
+            <div class="module-title">园中趣事 · 飞花令</div>
+            <div class="fun-game-grid">
+                <div class="fun-game-card" id="flyflower-card">
+                    <img class="fly-banner" src="image/江南私园 (1).jpg" alt="飞花令">
+                    <h4>飞花令</h4>
+                    <div class="fly-controls">
+                        <div class="fly-chips">
+                            <button class="fly-chip" data-char="花">花</button>
+                            <button class="fly-chip" data-char="月">月</button>
+                            <button class="fly-chip" data-char="春">春</button>
+                            <button class="fly-chip" data-char="秋">秋</button>
+                            <button class="fly-chip" data-char="山">山</button>
+                            <button class="fly-chip" data-char="水">水</button>
+                            <button class="fly-chip" data-char="酒">酒</button>
+                        </div>
+                        <div class="fly-form">
+                            <input id="fly-char-input" maxlength="1" placeholder="令字… 如：花">
+                            <button id="fly-start-btn"><i class="fa-solid fa-dice"></i> 开始</button>
+                        </div>
+                    </div>
+                    <ul id="fly-result-list" class="fly-list"></ul>
+                    <div class="fly-add">
+                        <input id="fly-user-line" placeholder="我来一句含令字的诗句…">
+                        <button id="fly-add-btn"><i class="fa-solid fa-plus"></i> 添一句</button>
+                    </div>
+                    <p class="game-desc">选择令字或自填，系统会展示含该字的经典诗句；你也可追加自己的句子。</p>
+                </div>
+                <div class="fun-game-card">
+                    <i class="fa-solid fa-camera-retro"></i>
+                    <h4>寻影留踪</h4>
+                    <div id="photo-drop" class="photo-drop">
+                        <div class="photo-drop-hint">
+                            <i class="fa-solid fa-image"></i>
+                            <p>拖拽图片到此，或点击下方按钮选择图片</p>
+                        </div>
+                        <img id="photo-preview" class="photo-preview" style="display:none;">
+                    </div>
+                    <div class="photo-actions">
+                        <button id="photo-choose"><i class="fa-solid fa-folder-open"></i> 选择图片</button>
+                        <button id="photo-analyze" disabled><i class="fa-solid fa-magnifying-glass-chart"></i> 解析图片</button>
+                        <input id="photo-input" type="file" accept="image/*" style="display:none;">
+                    </div>
+                    <div id="photo-insights" class="insights"></div>
+                    <p class="game-desc">上传拍摄的园林照片，系统将从色彩与纹理要素出发，给出可能的造园手法要点。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+<!-- AI 智能体 SDK -->
+<script src="https://o.alicdn.com/appflow/chatbot/v1/AppflowChatSDK.js"></script>
+<script>
+    if (window.APPFLOW_CHAT_SDK && window.APPFLOW_CHAT_SDK.init) {
+        window.APPFLOW_CHAT_SDK.init({
+            integrateConfig: {
+                integrateId: 'cit-a6f891b8400b44d2a440',
+                domain: { requestDomain: 'https://1446874318902084.appflow.aliyunnest.com' }
+            }
+        });
+    }
+</script>
+</body>
+</html>
